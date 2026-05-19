@@ -1,0 +1,36 @@
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: postgres-auth
+  namespace: postgresql
+spec:
+  secretTargetRef:
+    - parameter: password
+      name: db-credentials
+      key: password
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: postgresql-scaler
+  namespace: postgresql
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: postgresql-read
+  minReplicaCount: 3
+  maxReplicaCount: 10
+  triggers:
+    - type: postgresql
+      metadata:
+        host: postgresql-primary.postgresql.svc.cluster.local
+        port: "5432"
+        dbName: mederma
+        userName: dexter
+        sslmode: disable
+        query: |
+          SELECT COUNT(*) FROM orders WHERE status='PENDING';
+        targetQueryValue: "1"
+      authenticationRef:
+        name: postgres-auth
