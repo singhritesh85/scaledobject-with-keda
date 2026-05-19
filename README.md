@@ -1,1 +1,0 @@
-# scaledobject-with-keda
