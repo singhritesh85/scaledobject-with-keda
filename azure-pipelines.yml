@@ -7,11 +7,11 @@ pool:
   - agent.name -equals demo
 
 stages:
-- stage: scaledobject-keda
-  displayName: scaledobject-keda
+- stage: scaledobject_keda
+  displayName: scaledobject_keda
   jobs:
-  - deployment: scaledobject-keda
-    displayName: scaledobject-keda
+  - deployment: scaledobject_keda
+    displayName: scaledobject_keda
     environment: "dev"
     strategy:
       runOnce:
