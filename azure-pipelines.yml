@@ -23,10 +23,10 @@ stages:
               script: |
                 yes|argocd login argocd.singhritesh85.com --username admin --password $(ARGOCD_PASSWORD) --grpc-web --kube-context=gke_wise-trainer-244916_us-central1_multicloud-gke-cluster
                 argocd repo add https://github.com/singhritesh85/scaledobject-with-keda.git --username $(GITHUB_USERNAME) --password $(GITHUB_PASSWORD) --kube-context=gke_wise-trainer-244916_us-central1_multicloud-gke-cluster
-                argocd app create scaledobject-gke --project default --repo https://github.com/singhritesh85/scaledobject-with-keda.git --path ./scaledobject-with-keda.yaml --dest-namespace ordersystem --sync-option CreateNamespace=true --dest-server https://kubernetes.default.svc --kube-context=gke_wise-trainer-244916_us-central1_multicloud-gke-cluster --upsert
+                argocd app create scaledobject-gke --project default --repo https://github.com/singhritesh85/scaledobject-with-keda.git --path ./ --file scaledobject-with-keda.yaml --dest-namespace ordersystem --sync-option CreateNamespace=true --dest-server https://kubernetes.default.svc --kube-context=gke_wise-trainer-244916_us-central1_multicloud-gke-cluster --upsert
                 argocd app sync scaledobject-gke --kube-context=gke_wise-trainer-244916_us-central1_multicloud-gke-cluster
-                kubectl get pods -n ordersystem --context=gke_wise-trainer-244916_us-central1_multicloud-gke-cluster
-                argocd app create scaledobject-aks --project default --repo https://github.com/singhritesh85/scaledobject-with-keda.git --path ./trigger-authentication-scaledobject.yaml --dest-namespace postgresql --sync-option CreateNamespace=true --dest-server https://multicloud-cluster-dns-8t715zyt.hcp.eastus.azmk8s.io:443 --kube-context=multicloud-aks-cluster --upsert
+                kubectl get scaledobject -n ordersystem --context=gke_wise-trainer-244916_us-central1_multicloud-gke-cluster
+                argocd app create scaledobject-aks --project default --repo https://github.com/singhritesh85/scaledobject-with-keda.git --path ./ --file trigger-authentication-scaledobject.yaml --dest-namespace postgresql --sync-option CreateNamespace=true --dest-server https://multicloud-cluster-dns-8t715zyt.hcp.eastus.azmk8s.io:443 --kube-context=multicloud-aks-cluster --upsert
                 argocd app sync scaledobject-aks --kube-context=multicloud-aks-cluster
-                kubectl get pods -n postgresql --context=multicloud-aks-cluster
+                kubectl get scaledobject -n postgresql --context=multicloud-aks-cluster
 
