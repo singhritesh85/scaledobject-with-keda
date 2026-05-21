@@ -27,7 +27,7 @@ stages:
                 argocd app sync scaledobject-gke --kube-context=gke_wise-trainer-244916_us-central1_multicloud-gke-cluster
                 kubectl get scaledobject -n ordersystem --context=gke_wise-trainer-244916_us-central1_multicloud-gke-cluster
                 kubectl get hpa -n ordersystem --context=gke_wise-trainer-244916_us-central1_multicloud-gke-cluster
-                argocd app create scaledobject-aks --project default --repo https://github.com/singhritesh85/scaledobject-with-keda.git --path ./trigger-authentication-scaledobject --dest-namespace postgresql --sync-option CreateNamespace=true --dest-server https://multicloud-cluster-dns-8t715zyt.hcp.eastus.azmk8s.io:443 --kube-context=multicloud-aks-cluster --upsert
+                argocd app create scaledobject-aks --project default --repo https://github.com/singhritesh85/scaledobject-with-keda.git --path ./trigger-authentication-scaledobject --dest-namespace postgresql --sync-option CreateNamespace=true --dest-server https://multicloud-cluster-dns-q1mjcddp.hcp.eastus.azmk8s.io:443 --kube-context=multicloud-aks-cluster --upsert
                 argocd app sync scaledobject-aks --kube-context=multicloud-aks-cluster
                 kubectl get scaledobject -n postgresql --context=multicloud-aks-cluster
                 kubectl get hpa -n postgresql --context=multicloud-aks-cluster
