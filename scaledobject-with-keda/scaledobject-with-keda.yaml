@@ -9,7 +9,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: order-service-folo
-  pollingInterval: 10
+  pollingInterval: 600
   minReplicaCount: 1
   maxReplicaCount: 10
   triggers:
