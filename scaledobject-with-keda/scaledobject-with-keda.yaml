@@ -9,7 +9,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: order-service-folo
-  pollingInterval: 600
+  pollingInterval: 10
   minReplicaCount: 1
   maxReplicaCount: 10
   triggers:
@@ -25,4 +25,4 @@ spec:
       deployment: order-service-folo
       service: order-service-folo
       port: "80"
-      targetPendingRequests: "20"
+      targetPendingRequests: "2"
