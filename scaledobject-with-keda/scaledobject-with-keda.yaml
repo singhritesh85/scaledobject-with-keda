@@ -43,5 +43,5 @@ spec:
       metadata:
         serverAddress: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
         metricName: http_requests_total
-        query: sum(increase(http_server_requests_seconds_count{method="PUT"}[10s]))
+        query: sum(increase(http_server_requests_seconds_count{method="PUT", /orders}[10s]))
         threshold: "20"
