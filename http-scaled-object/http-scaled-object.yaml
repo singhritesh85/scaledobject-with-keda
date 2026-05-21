@@ -15,7 +15,7 @@ spec:
     max: 10
   scalingMetric:
     concurrency:
-      targetValue: 2
+      targetValue: 20
   timeouts:
     conditionWait: 30s
   scaledownPeriod: 30
