@@ -9,6 +9,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: order-service-folo
+  pollingInterval: 10
   minReplicaCount: 1
   maxReplicaCount: 10
   triggers:
@@ -18,3 +19,10 @@ spec:
       topic: order-events
       consumerGroup: order-service-group
       lagThreshold: "1"
+  - type: external
+      metadata:
+        scalerAddress: keda-add-ons-http-external-scaler.keda.svc.cluster.local:9090
+        deployment: order-service-folo
+        service: order-service-folo
+        port: "80"
+        targetPendingRequests: "20"
