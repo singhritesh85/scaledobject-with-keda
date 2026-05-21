@@ -20,9 +20,9 @@ spec:
       consumerGroup: order-service-group
       lagThreshold: "1"
   - type: external
-      metadata:
-        scalerAddress: keda-add-ons-http-external-scaler.keda.svc.cluster.local:9090
-        deployment: order-service-folo
-        service: order-service-folo
-        port: "80"
-        targetPendingRequests: "20"
+    metadata:
+      scalerAddress: keda-add-ons-http-external-scaler.keda.svc.cluster.local:9090
+      deployment: order-service-folo
+      service: order-service-folo
+      port: "80"
+      targetPendingRequests: "20"
