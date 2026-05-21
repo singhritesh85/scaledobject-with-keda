@@ -1,4 +1,15 @@
 ---
+apiVersion: http.keda.sh/v1beta1
+kind: InterceptorRoute
+metadata:
+  name: order-service-routing
+  namespace: ordersystem
+spec:
+  host: order-service.ordersystem.svc.cluster.local # Your expected HTTP Host header rule
+  target:
+    service: order-service-folo
+    port: 80
+---
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
@@ -22,7 +33,4 @@ spec:
   - type: external-push
     metadata:
       scalerAddress: keda-add-ons-http-external-scaler.keda.svc.cluster.local:9090
-      deployment: order-service-folo
-      service: order-service-folo
-      port: "80"
-      targetPendingRequests: "2"
+      interceptorRoute: order-service-routing
