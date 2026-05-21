@@ -10,9 +10,8 @@ spec:
     apiVersion: apps/v1
     service: order-service-folo
     port: 80
-  replicas:
-    min: 1
-    max: 10
+  maxReplicas: 10
+  minReplicas: 1
   scalingMetric:
     concurrency:
       targetValue: 2
