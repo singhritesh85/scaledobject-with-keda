@@ -1,4 +1,21 @@
 ---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: order-service-monitor
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: order-service-folo
+  namespaceSelector:
+    matchNames:
+      - ordersystem
+  endpoints:
+    - port: http
+      path: /actuator/prometheus
+      interval: 10s
+---
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
