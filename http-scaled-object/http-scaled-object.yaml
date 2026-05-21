@@ -14,5 +14,5 @@ spec:
   maxReplicaCount: 10
   scalingMetric:
     concurrency:
-      targetValue: 20
-      granularity: 10s
+      targetValue: 2
+      granularity: 1s
