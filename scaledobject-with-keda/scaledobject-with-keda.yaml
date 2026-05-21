@@ -41,7 +41,7 @@ spec:
     # HTTP Request Scaling via Prometheus
     - type: prometheus
       metadata:
-        serverAddress: http://prometheus-server.monitoring.svc.cluster.local:9090
+        serverAddress: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
         metricName: http_requests_total
         query: sum(rate(http_server_requests_seconds_count[1m]))
         threshold: "20"
