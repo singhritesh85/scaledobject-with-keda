@@ -45,3 +45,9 @@ spec:
         metricName: http_requests_total
         query: sum(increase(http_server_requests_seconds_count{method="PUT", uri="/orders"}[10s]))
         threshold: "20"
+    - type: cron
+      metadata:
+        timezone: Asia/Kolkata
+        start: 0 9 * * *
+        end: 0 18 * * *
+        desiredReplicas: "5"
